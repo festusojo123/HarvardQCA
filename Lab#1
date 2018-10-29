@@ -1,0 +1,122 @@
+HarvardQCA Lab #1
+
+# coding: utf-8
+
+# # Lab 1: Intro to Quatum Circuits
+
+# ## Overview
+# In this lab, we will start to get familiar with two major quantum software platforms: Qiskit (IBM) and PyQuil (Rigetti).  We will take a basic quantum circuit diagram and implement it in each of these languages.  Ultimately, we will execute the circuit on a real quantum device via the IBM Q Experience. (*Note: there may be backlog issues) 
+
+# ### The Circuit
+# ![hyperlink](https://www.dropbox.com/s/iq9dmai17kyow5x/Screenshot%202018-03-21%2009.44.58.png?raw=1)
+
+# ## Qiskit
+
+# Now, we will implement this same circuit in Qiskit.  Once we have a complete circuit, we will compile and run on an actual IBM device (!)
+# 
+# See https://github.com/Qiskit/qiskit-terra for implementations and https://nbviewer.jupyter.org/github/Qiskit/qiskit-tutorial/blob/master/index.ipynb for tutorials.
+
+# In[ ]:
+
+
+# Import the Qiskit SDK
+from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister
+from qiskit.tools.visualization import plot_histogram
+from qiskit import register
+
+# Note this assumes Qconfig file in same directory
+import Qconfig
+
+
+# In[ ]:
+
+
+# set API token from Qconfig file (in directory)
+qx_config = {
+    "APItoken": Qconfig.APItoken,
+    "url": Qconfig.config['url']}
+# register api token
+register(qx_config['APItoken'], qx_config['url'])
+
+# See a list of available local simulators
+print("Aer backends: ", Aer.backends())
+
+
+# a. Create quantum and classical registers and initialize circuit
+
+# In[ ]:
+
+
+# Your code here
+
+
+
+# b. Add the gates from the diagram to the circuits (see https://en.wikipedia.org/wiki/Quantum_logic_gate for gate types)
+
+# In[ ]:
+
+
+# your code here
+
+
+# c. Double check that your circuit matches the diagram
+
+# In[ ]:
+
+
+# your code here
+
+
+
+# d. Execute this circuit on the local simulator and plot the results
+
+# In[ ]:
+
+
+# your code here
+
+
+# e. (Challenge) Execute on physical device (may require digging into Qiskit docs)
+
+# In[ ]:
+
+
+# your code here
+
+
+# ## Pyquil 2.0
+
+# You are one of the first people testing out Rigetti's entirely new platform (just released last night!), PyQuil 2.0. Documentation for getting started can be found at http://pyquil.readthedocs.io/en/latest and the repo can be found at http://github.com/rigetticomputing/pyquil . Make sure you set up a Forest API key if you don't have one already.
+
+# **a.)** Explore the new version of PyQuil to code this circuit as a ```Program``` 
+
+# In[1]:
+
+
+from pyquil.gates import *
+from pyquil.quil import Program
+
+# YOUR CODE HERE
+
+
+# **b.)** Use the ```quantum_simulator```'s  ```wavefunction``` method to turn your program into a wavefunction.
+
+# In[3]:
+
+
+from pyquil.api import QVMConnection
+quantum_simulator = QVMConnection()
+
+# YOUR CODE HERE
+
+
+# **c.)** What are the associated outcome probabilities of your ```wavefunction``` you just made? What does this tell you about our circuit? Does the data match with your histogram from the QisKit implementation?
+
+# Hint: Use Rigetti's Introduction to Quantum Computing module for inspiration (https://pyquil.readthedocs.io/en/latest/intro.html), but try and work through this on your own first!
+
+# In[ ]:
+
+
+# YOUR CODE HERE
+
+
